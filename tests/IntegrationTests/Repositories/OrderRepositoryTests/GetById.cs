@@ -18,9 +18,10 @@ namespace Microsoft.eShopWeb.IntegrationTests.Repositories.OrderRepositoryTests
         {
             _output = output;
             var dbOptions = new DbContextOptionsBuilder<CatalogContext>()
-                .UseInMemoryDatabase(databaseName: "TestCatalog")
+                .UseSqlServer("Data Source=localhost; Initial Catalog=TestCatalog; User Id=sa; Password=P@ssW0rd!")
                 .Options;
             _catalogContext = new CatalogContext(dbOptions);
+            _catalogContext.Database.EnsureCreated();
             _orderRepository = new OrderRepository(_catalogContext);
         }
 

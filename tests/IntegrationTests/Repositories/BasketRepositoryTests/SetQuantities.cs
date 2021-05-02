@@ -19,9 +19,10 @@ namespace Microsoft.eShopWeb.IntegrationTests.Repositories.BasketRepositoryTests
         public SetQuantities()
         {
             var dbOptions = new DbContextOptionsBuilder<CatalogContext>()
-                .UseInMemoryDatabase(databaseName: "TestCatalog")
+                .UseSqlServer("Data Source=localhost; Initial Catalog=TestCatalog; User Id=sa; Password=P@ssW0rd!")
                 .Options;
             _catalogContext = new CatalogContext(dbOptions);
+            _catalogContext.Database.EnsureCreated();
             _basketRepository = new EfRepository<Basket>(_catalogContext);
         }
 

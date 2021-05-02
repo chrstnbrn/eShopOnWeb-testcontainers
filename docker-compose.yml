@@ -1,4 +1,4 @@
-version: '3.4'
+version: "3.4"
 
 services:
   eshopwebmvc:
@@ -11,4 +11,10 @@ services:
     build:
       context: .
       dockerfile: src/PublicApi/Dockerfile
-
+  integrationtestdb:
+    image: mcr.microsoft.com/mssql/server:2017-CU8-ubuntu
+    environment:
+      SA_PASSWORD: "P@ssW0rd!"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
